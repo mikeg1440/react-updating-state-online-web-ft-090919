@@ -1,30 +1,31 @@
-import React, {Component} from 'react';
+import React from 'react';
 
+class LightSwitch extends React.Component {
+  constructor() {
+    super();
 
-class ClickityClick extends Component{
-  constructor(){
-    super()
-
+    // Initial state is defined
     this.state = {
-      hasBeenClicked: false
-    }
+      toggled: false
+    };
   }
 
+  // when handleClick is called, setState will update the state so that toggle is reversed
   handleClick = () => {
-    this.setState({
-      hasBeenClicked: true
+    this.setState(previousState => {
+      return {
+        toggled: !previousState.toggled
+      }
     })
   }
 
-
-  render(){
+  render() {
     return (
       <div>
-        <p>I have { this.state.hasBeenClicked ? null : 'not' } been clicked!</p>
-        <button onClick={this.handleClick}>Click Me!</button>
+        <button onClick={this.handleClick}>{this.state.toggled ? "ON" : "OFF"}</button>
       </div>
-    )
+    );
   }
 }
 
-export default ClickityClick
+export default LightSwitch;
